@@ -1,0 +1,9 @@
+#!/bin/bash
+set -euo pipefail
+cd "$(dirname "$0")"
+
+docker build -t spencertipping/ssh-base .
+docker build -t spencertipping/ssh-machine -f Dockerfile.spencer .
+
+docker push spencertipping/ssh-base
+docker push spencertipping/ssh-machine
