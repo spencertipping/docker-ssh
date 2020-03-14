@@ -36,6 +36,7 @@ RUN chown $user:$user /home/$user/$user-id_rsa.pub \
  && chmod 0700 /home/$user/$user-id_rsa.pub
 
 USER $user
+ENV USER=$user
 WORKDIR /home/$user
 RUN bash $user-user-setup
 

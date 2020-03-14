@@ -1,6 +1,4 @@
 #!/bin/bash
-set -euo pipefail
-
 mkdir -p ~/.ssh
 mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
 
@@ -10,7 +8,7 @@ git clone https://github.com/spencertipping/dotbash ~/.bash
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # Initialize dotfiles
-~/dotfiles/setup yes-really
+~/dotfiles/setup yes-really || :
 
 source ~/.bash/init
 
