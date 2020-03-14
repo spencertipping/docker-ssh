@@ -21,6 +21,8 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
         python3 perl jq perl-doc ascii \
         python3-scipy python-pip python3-pip \
         gnuplot-nox \
+        npm \
+        libtinfo5 libtinfo6 \
  && pip3 install tensorflow \
  && pip  install platformio \
  && curl -sSL https://get.haskellstack.org/ | sh
