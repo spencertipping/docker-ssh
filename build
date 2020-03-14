@@ -2,8 +2,16 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
-docker build -t spencertipping/ssh-base .
-docker build -t spencertipping/ssh-machine -f Dockerfile.spencer .
+case $USER in
+  spencertipping)
+  docker build -t spencertipping/ssh-base .
+  docker build -t spencertipping/ssh-machine -f Dockerfile.spencer .
+  docker push spencertipping/ssh-base
+  docker push spencertipping/ssh-machine
+  ;;
 
-docker push spencertipping/ssh-base
-docker push spencertipping/ssh-machine
+  joyce)
+  docker build -t joycetipping/ssh-machine -f Dockerfile.joyce .
+  docker push joycetipping/ssh-machine
+  ;;
+esac

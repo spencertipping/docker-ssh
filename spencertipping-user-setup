@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+
+mkdir -p ~/.ssh
+mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
+
+[[ -d ~/r ]] || ln -s /mnt/v1/$USER ~/r
+
+git clone https://github.com/spencertipping/dotfiles ~/dotfiles
+git clone https://github.com/spencertipping/dotbash ~/.bash
+git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+
+# Initialize dotfiles
+~/dotfiles/setup yes-really
+
+source ~/.bash/init
+
+stack setup
+emacs --batch --script ~/.emacs.d/init.el --kill
+emacs --batch --script ~/.emacs.d/init.el --kill
+
+rm "$0"
