@@ -7,6 +7,8 @@ ADD etc-keyboard /etc/default/keyboard
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+ && sed -r 's/eoan/bionic/g' /etc/apt/sources.list \
+    > /etc/apt/sources.list.d/bionic.list \
  && apt-get update \
  && apt-get install -y \
         rsync build-essential \
@@ -34,7 +36,7 @@ ARG user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
  && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers
 
-ADD $user-id_rsa.pub $user-user-setup /home/$user/
+ADD $user-id_rsa.pub $user-user-setup install-perf /home/$user/
 RUN chown $user:$user /home/$user/$user-id_rsa.pub \
  && chmod 0700 /home/$user/$user-id_rsa.pub
 
