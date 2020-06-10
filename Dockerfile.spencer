@@ -1,4 +1,4 @@
-FROM spencertipping/ssh-base
+FROM spencertipping/ssh-base:latest
 
 # Prevent the keyboard-configuration package setup from blocking the apt-get
 # install below
