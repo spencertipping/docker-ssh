@@ -7,8 +7,6 @@ ADD etc-keyboard /etc/default/keyboard
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
- && sed -r 's/eoan/bionic/g' /etc/apt/sources.list \
-    > /etc/apt/sources.list.d/bionic.list \
  && apt-get update \
  && apt-get install -y \
         rsync build-essential \
@@ -26,7 +24,6 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
         npm \
         libtinfo5 libtinfo6 \
         rustc rust-doc rust-gdb cargo \
- && pip3 install tensorflow \
  && curl -sSL https://get.haskellstack.org/ | sh \
  && python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
 
