@@ -21,7 +21,7 @@ rm Miniconda3-latest-Linux-x86_64.sh
 
 eval "$(~/miniconda/bin/conda shell.bash hook)"
 conda init || exit $?
-conda install -y tensorflow || exit $?
+conda install -y tensorflow imageio || exit $?
 
 
 # Haskell stack (pre-download GHC)
