@@ -1,5 +1,5 @@
 #!/bin/bash
-mkdir -p ~/.ssh
+mkdir -p ~/.ssh ~/bin
 mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
 
 [[ -d ~/r ]] || ln -s /mnt/v1/$USER ~/r
@@ -33,6 +33,12 @@ npm config set prefix ~/.npm-global
 npm install -g npm        || exit $?
 npm install -g purescript || exit $?
 npm install -g spago      || exit $?
+
+
+# Bazel via bazelisk
+go get github.com/bazelbuild/bazelisk \
+  && ln ~/go/bin/bazelisk ~/bin/ || exit $?
+bazelisk
 
 
 # Precompile spacemacs, which takes a while
