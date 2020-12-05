@@ -24,6 +24,11 @@ conda init || exit $?
 conda install -y tensorflow imageio || exit $?
 
 
+# SpaCy
+pip3 install spacy || exit $?
+python3 -m spacy download en || exit $?
+
+
 # Haskell stack (pre-download GHC)
 stack setup || exit $?
 
