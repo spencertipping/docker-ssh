@@ -24,9 +24,18 @@ conda init || exit $?
 conda install -y tensorflow imageio || exit $?
 
 
-# SpaCy
+# SpaCy, torch, transformers, and huggingface cache linkup
 pip3 install spacy || exit $?
+pip3 install torch || exit $?
+pip3 install sentencepiece || exit $?
+pip3 install transformers || exit $?
+
 python3 -m spacy download en || exit $?
+
+if ! [[ -d ~/.cache/huggingface ]]; then
+  mkdir -p ~/.cache
+  ln -s ~/r/cache-huggingface ~/.cache/huggingface
+fi
 
 
 # Haskell stack (pre-download GHC)
