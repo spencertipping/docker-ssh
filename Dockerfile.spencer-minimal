@@ -1,0 +1,19 @@
+FROM spencertipping/ssh-base:latest
+
+ARG user=spencertipping
+RUN useradd -ms /bin/bash $user -G adm,sudo \
+ && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers
+
+ADD $user-id_rsa.pub /home/$user/
+RUN chown $user:$user /home/$user/$user-id_rsa.pub \
+ && chmod 0700 /home/$user/$user-id_rsa.pub
+
+USER $user
+ENV USER=$user
+WORKDIR /home/$user
+RUN mkdir .ssh && mv $user-id_rsa.pub .ssh/authorized_keys
+
+VOLUME /mnt
+
+USER root
+WORKDIR /

@@ -5,8 +5,10 @@ cd "$(dirname "$0")"
 case $USER in
   spencertipping)
   docker build -t spencertipping/ssh-base .
+  docker build -t spencertipping/ssh-machine-minimal -f Dockerfile.spencer-minimal .
   docker build -t spencertipping/ssh-machine -f Dockerfile.spencer .
   docker push spencertipping/ssh-base
+  docker push spencertipping/ssh-machine-minimal
   docker push spencertipping/ssh-machine
   ;;
 
