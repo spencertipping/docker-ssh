@@ -1,5 +1,8 @@
 FROM spencertipping/ssh-base:latest
 
+RUN apt-get update \
+ && apt-get -y install sudo
+
 ARG user=spencertipping
 RUN useradd -ms /bin/bash $user -G adm,sudo \
  && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers
