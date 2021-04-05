@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y \
-        rsync build-essential \
+        rsync tree build-essential \
         man manpages manpages-posix manpages-dev \
         tmux htop atop iotop curl \
         vim apt-transport-https git git-lfs \
