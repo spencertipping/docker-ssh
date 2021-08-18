@@ -6,7 +6,8 @@ ADD etc-keyboard /etc/default/keyboard
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list \
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
+        /etc/apt/sources.list \
  && apt-get update \
  && apt-get install -y \
         rsync tree build-essential \
