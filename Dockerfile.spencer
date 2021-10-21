@@ -12,12 +12,11 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
  && apt-get install -y \
         rsync tree build-essential ranger \
         man manpages manpages-posix manpages-dev \
-        tmux xpra htop atop iotop curl \
+        tmux htop atop iotop curl \
         vim apt-transport-https git git-lfs \
         nmap sshuttle pv netcat-traditional socat iputils-ping dnsutils \
         xzip zip unzip unrar-free lzop liblz4-tool pbzip2 pigz zpaq lrzip \
         p7zip-full zstd \
-        emacs ttf-ubuntu-font-family \
         ffmpeg imagemagick \
         python3 perl jq perl-doc ascii \
         python3-scipy python3-pip python-is-python3 \
@@ -27,8 +26,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
         rustc rust-doc rust-gdb cargo \
         golang \
         libsys-mmap-perl \
- && curl -sSL https://get.haskellstack.org/ | sh \
- && python3 -c "$(curl -fsSL https://raw.githubusercontent.com/platformio/platformio/develop/scripts/get-platformio.py)"
+ && curl -sSL https://get.haskellstack.org/ | sh
 
 # NB: ARG user is here because nothing above depends on it (so we want to reuse
 # those layers)

@@ -4,9 +4,8 @@ mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
 
 [[ -d ~/r ]] || ln -s /mnt/v1/$USER ~/r
 
-git clone https://github.com/spencertipping/dotfiles ~/dotfiles || exit $?
-git clone https://github.com/spencertipping/dotbash ~/.bash     || exit $?
-git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d      || exit $?
+git clone git://github.com/spencertipping/dotfiles ~/dotfiles || exit $?
+git clone git://github.com/spencertipping/dotbash ~/.bash     || exit $?
 
 # Initialize dotfiles early
 ~/dotfiles/setup yes-really || :
@@ -14,53 +13,23 @@ git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d      || exit $?
 source ~/.bash/init
 
 
-# Conda + bashrc + tensorflow
+# Conda + bashrc
 wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 bash Miniconda3-latest-Linux-x86_64.sh -b -p ~/miniconda || exit $?
 rm Miniconda3-latest-Linux-x86_64.sh
 
 eval "$(~/miniconda/bin/conda shell.bash hook)"
 conda init || exit $?
-conda install -y tensorflow imageio || exit $?
-
-
-# SpaCy, torch, transformers, and huggingface cache linkup
-pip3 install spacy || exit $?
-pip3 install torch || exit $?
-pip3 install sentencepiece || exit $?
-pip3 install transformers || exit $?
-
-python3 -m spacy download en || exit $?
-
-if ! [[ -d ~/.cache/huggingface ]]; then
-  mkdir -p ~/.cache
-  ln -s ~/r/cache-huggingface ~/.cache/huggingface
-fi
 
 
 # Haskell stack (pre-download GHC)
 stack setup || exit $?
 
 
-# PS/spago
-npm config set prefix ~/.npm-global
-npm install -g npm        || exit $?
-npm install -g purescript || exit $?
-npm install -g spago      || exit $?
-
-
 # Bazel via bazelisk
 go get github.com/bazelbuild/bazelisk \
   && ln ~/go/bin/bazelisk ~/bin/ || exit $?
 bazelisk
-
-
-# Precompile spacemacs, which takes a while
-cd ~/.emacs.d
-git checkout 4c2fcc13cbd2b27b17149f8ac1a55a42a50ae2e9 || exit $?
-
-emacs --batch --script ~/.emacs.d/init.el --kill
-emacs --batch --script ~/.emacs.d/init.el --kill
 
 
 # Remove this script so we don't rerun setup
