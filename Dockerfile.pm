@@ -30,7 +30,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
 
 # NB: ARG user is here because nothing above depends on it (so we want to reuse
 # those layers)
-ARG user=joyce
+ARG user=pm
 RUN useradd -ms /bin/bash $user -G adm,sudo \
  && echo "%sudo ALL=NOPASSWD: ALL" >> /etc/sudoers
 
@@ -48,5 +48,3 @@ VOLUME /mnt
 
 USER root
 WORKDIR /
-
-RUN apt install -y xpra emacs

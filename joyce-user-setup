@@ -16,8 +16,6 @@ stack setup
 
 npm config set prefix ~/.npm-global
 npm install -g npm
-npm install -g purescript
-npm install -g spago
 
 emacs --batch --script ~/.emacs.d/init.el --kill
 emacs --batch --script ~/.emacs.d/init.el --kill
