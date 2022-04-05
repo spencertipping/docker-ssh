@@ -3,21 +3,22 @@ mkdir -p ~/.ssh
 mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
 
 # TODO joyce: customize these to your setup
-git clone https://github.com/spencertipping/dotfiles ~/dotfiles
+mkdir -p ~/projects
+
+git clone https://github.com/joycetipping/configuration ~/projects/configuration
 git clone https://github.com/spencertipping/dotbash ~/.bash
 git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 
 # Initialize dotfiles
-~/dotfiles/setup yes-really || :
+~/projects/configuration/setup yes-really || :
+
+cat > ~/passwords-edit <<'EOF'
+#!/bin/bash
+exec /mnt/jt/projects/passwords/edit
+EOF
+
+chmod +x ~/passwords-edit
 
 source ~/.bash/init
-
-stack setup
-
-npm config set prefix ~/.npm-global
-npm install -g npm
-
-emacs --batch --script ~/.emacs.d/init.el --kill
-emacs --batch --script ~/.emacs.d/init.el --kill
 
 rm "$0"

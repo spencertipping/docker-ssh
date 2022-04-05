@@ -7,12 +7,10 @@ case $USER in
   docker build -t spencertipping/ssh-base .
   docker build -t spencertipping/ssh-machine-minimal -f Dockerfile.spencer-minimal .
   docker build -t spencertipping/ssh-machine -f Dockerfile.spencer .
-  docker build -t spencertipping/ssh-machine-pm -f Dockerfile.pm .
 
   docker build -t spencertipping/joyce-ssh-machine -f Dockerfile.joyce .
 
-  for i in ssh-{base,machine{,-minimal,-pm}} joyce-ssh-machine; do
-    docker push spencertipping/$i
+  for i in ssh-{base,machine{,-minimal}} joyce-ssh-machine; do
     docker tag spencertipping/$i registry.35:5000/$i
     docker push registry.35:5000/$i
   done
@@ -20,6 +18,7 @@ case $USER in
 
   joyce)
   docker build -t joycetipping/ssh-machine -f Dockerfile.joyce .
-  docker push joycetipping/ssh-machine
+  docker tag joycetipping/ssh-machine registry.35:5000/joyce-ssh-machine
+  docker push registry.35:5000/joyce-ssh-machine
   ;;
 esac

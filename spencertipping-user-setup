@@ -4,8 +4,8 @@ mv ~/$USER-id_rsa.pub ~/.ssh/authorized_keys
 
 [[ -d ~/r ]] || ln -s /mnt/v1/$USER ~/r
 
-git clone git://github.com/spencertipping/dotfiles ~/dotfiles || exit $?
-git clone git://github.com/spencertipping/dotbash ~/.bash     || exit $?
+git clone https://github.com/spencertipping/dotfiles ~/dotfiles || exit $?
+git clone https://github.com/spencertipping/dotbash ~/.bash     || exit $?
 
 # Initialize dotfiles early
 ~/dotfiles/setup yes-really || :
