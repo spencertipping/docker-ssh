@@ -25,8 +25,7 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
         libtinfo5 libtinfo6 \
         rustc rust-doc rust-gdb cargo \
         golang \
-        libsys-mmap-perl \
- && curl -sSL https://get.haskellstack.org/ | sh
+        libsys-mmap-perl
 
 # NB: ARG user is here because nothing above depends on it (so we want to reuse
 # those layers)

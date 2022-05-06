@@ -22,16 +22,6 @@ eval "$(~/miniconda/bin/conda shell.bash hook)"
 conda init || exit $?
 
 
-# Haskell stack (pre-download GHC)
-stack setup || exit $?
-
-
-# Bazel via bazelisk
-go get github.com/bazelbuild/bazelisk \
-  && ln ~/go/bin/bazelisk ~/bin/ || exit $?
-bazelisk
-
-
 # Remove this script so we don't rerun setup
 cd
 rm "$0"

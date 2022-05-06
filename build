@@ -11,14 +11,14 @@ case $USER in
   docker build -t spencertipping/joyce-ssh-machine -f Dockerfile.joyce .
 
   for i in ssh-{base,machine{,-minimal}} joyce-ssh-machine; do
-    docker tag spencertipping/$i registry.35:5000/$i
-    docker push registry.35:5000/$i
+    docker tag spencertipping/$i registry.128:5000/$i
+    docker push registry.128:5000/$i
   done
   ;;
 
   joyce)
   docker build -t joycetipping/ssh-machine -f Dockerfile.joyce .
-  docker tag joycetipping/ssh-machine registry.35:5000/joyce-ssh-machine
-  docker push registry.35:5000/joyce-ssh-machine
+  docker tag joycetipping/ssh-machine registry.128:5000/joyce-ssh-machine
+  docker push registry.128:5000/joyce-ssh-machine
   ;;
 esac
