@@ -22,12 +22,16 @@ RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g; s/^#\s*deb-src/deb-src/g' \
         python3-scipy python3-pip python-is-python3 \
         gnuplot-nox \
         npm \
-        libsys-mmap-perl \
-        xpra
+        libsys-mmap-perl
 
 RUN wget 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb' -O /tmp/google-chrome.deb \
  && apt install -y /tmp/google-chrome.deb \
  && rm /tmp/google-chrome.deb
+
+RUN wget -O "/usr/share/keyrings/xpra-2022.gpg" https://xpra.org/xpra-2022.gpg \
+ && wget -O /etc/apt/sources.list.d/xpra.list https://xpra.org/repos/jammy/xpra.list \
+ && apt update \
+ && apt install -y xpra
 
 # NB: ARG user is here because nothing above depends on it (so we want to reuse
 # those layers)
